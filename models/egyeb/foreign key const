@@ -1,0 +1,2 @@
+ALTER TABLE pets
+ADD FOREIGN KEY (idCategory) REFERENCES categories(idCategories) on update cascade;
