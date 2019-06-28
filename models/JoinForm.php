@@ -24,7 +24,7 @@ class JoinForm extends Model{
         return [
             'Email'=>'Email', 
             'Password'=>'Password',
-            'Repeat'=>'Repeat password',
+            'Repeat'=>'Try Again',
         ];
     }
 }
