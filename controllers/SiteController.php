@@ -9,6 +9,8 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Categories;
+use app\models\Accounts;
 
 class SiteController extends Controller
 {
@@ -56,7 +58,18 @@ class SiteController extends Controller
     public function actionJoin(){
         $model = new \app\models\JoinForm();
         
-        
+        if($model->load(Yii::$app->request->post())){
+            Yii::info('Save here');
+            /*$account = new Accounts();
+            $account->Email = $model->Email;
+            $account->Password = $model->Password;
+            $model->validate();
+            $model->save(); 
+            return $this->redirect('site/about');*/
+            
+        }else{
+            Yii::warning('Issues with the model');
+        }
         return $this->render('join', ['model'=>$model]);
     }
     /**
