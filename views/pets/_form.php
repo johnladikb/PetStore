@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Pets */
+/* @var $req app\models\RequiredForm */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -14,9 +15,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'idCategory')->textInput() ?>
 
-    <?= $form->field($model, 'Name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($req, 'Name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'Description')->textarea(['rows' => 6]) ?>
+    <?= $form->field($req, 'Description')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'Cost')->textInput(['maxlength' => true]) ?>
 

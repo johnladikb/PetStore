@@ -12,6 +12,8 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use app\models\Accounts;
 use yii\base\Exception;
+use app\models\JoinForm;
+use app\models\RequiredForm;
 /**
  * PetsController implements the CRUD actions for Pets model.
  */
@@ -147,13 +149,20 @@ class PetsController extends Controller
     public function actionCreate()
     {
         $model = new Pets();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $req = new RequiredForm();
+        
+        if ($model->load(Yii::$app->request->post()) && $req->load(Yii::$app->request->post())) {
+            $model->Name = $req->Name;
+            $model->Description = $req->Description;
+            if(!$model->save()){
+                throw new NotFoundHttpException('Model could not be saved.');
+            }
             return $this->redirect(['view', 'id' => $model->idPets]);
         }
 
         return $this->render('create', [
             'model' => $model,
+            'req' => $req
         ]);
     }
 
